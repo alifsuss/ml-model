@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         {{- range .Values.images }}
-        - name: {{ .name | replace "/" "-" }}
+        - name: {{ .name | replace "_" "-" }}
           image: "asia-southeast2-docker.pkg.dev/mycicdproject-426810/images/{{ .name }}:{{ .tag }}"
           ports:
             - containerPort: {{ .port }}

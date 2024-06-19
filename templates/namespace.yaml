@@ -1,4 +1,8 @@
+{{- if not (hasKey .Release.Labels "meta.helm.sh/release-name") }}
 apiVersion: v1
 kind: Namespace
 metadata:
   name: ml-models
+  labels:
+    app.kubernetes.io/managed-by: Helm
+{{- end }}

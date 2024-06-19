@@ -17,7 +17,7 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: {{ .serviceName }}
+                name: {{ .serviceName | replace "_" "-" }}
                 port:
                   number: {{ .servicePort }}
           {{- end }}
