@@ -2,7 +2,7 @@ serviceAccount:
   create: true
   name: ""
 images:
-  - name: get-health-fastapi
+  - name: get_health_fastapi
     tag: latest
     replicaCount: 1
     maxReplicas: 3
@@ -19,7 +19,7 @@ ingress:
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
   paths:
-    - path: /latest/get-health-fastapi
+    - path: /latest/get_health_fastapi
       serviceName: get-health-fastapi-service
       servicePort: 8080
 service:
