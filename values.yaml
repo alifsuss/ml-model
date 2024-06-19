@@ -1,3 +1,6 @@
+serviceAccount:
+  create: true
+  name: ""
 images:
   - name: get_health_fastapi
     tag: latest
