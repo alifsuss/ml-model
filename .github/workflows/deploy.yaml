@@ -1,0 +1,37 @@
+name: Deploy Helm Charts to GKE
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    env:
+      PROJECT_ID: mycicdproject-426810
+      CLUSTER_NAME: primary-cluster
+      CLUSTER_REGION: us-central1
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Authenticate to Google Cloud
+      uses: google-github-actions/auth@v1
+      with:
+        credentials_json: ${{ secrets.GCP_SA_KEY }}
+
+    - name: Set up Cloud SDK
+      uses: google-github-actions/setup-gcloud@v1
+      with:
+        project_id: ${{ env.PROJECT_ID }}
+        install_components: kubectl
+
+    - name: Configure kubectl
+      run: |
+        gcloud container clusters get-credentials $CLUSTER_NAME --region $CLUSTER_REGION --project $PROJECT_ID
+
+    - name: Deploy Helm Chart
+      run: |
+        helm upgrade --install ml-model ./ml-model --namespace ml-models --values ./ml-model/values.yaml
