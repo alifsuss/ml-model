@@ -34,4 +34,4 @@ jobs:
 
     - name: Deploy Helm Chart
       run: |
-        helm upgrade --install ml-model ./ml-model --namespace ml-models --values ./ml-model/values.yaml
+        helm upgrade --install ml-model . --namespace ml-models --values ./values.yaml
