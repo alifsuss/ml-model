@@ -22,3 +22,5 @@ ingress:
     - path: /latest/get_health_fastapi
       serviceName: get-health-fastapi-service
       servicePort: 8080
+service:
+  port: 80  # Default port for testing
