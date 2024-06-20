@@ -2,13 +2,13 @@
 apiVersion: autoscaling/v1
 kind: HorizontalPodAutoscaler
 metadata:
-  name: {{ .name }}-hpa
-  namespace: ml-models
+  name: {{ .name | replace "_" "-" }}-hpa
+  namespace: {{ include "ml-model.namespace" . }}
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: {{ .name }}
+    name: {{ .name | replace "_" "-" }}
   minReplicas: {{ .replicaCount }}
   maxReplicas: {{ .maxReplicas }}
   targetCPUUtilizationPercentage: 80
