@@ -1,5 +1,4 @@
 namespace: ml-models
-
 images:
   - name: get-health-fastapi
     tag: latest

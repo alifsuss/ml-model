@@ -65,5 +65,8 @@ Create the name of the service account to use
 Create the namespace
 */}}
 {{- define "ml-model.namespace" -}}
+{{- if .Values.namespace }}
+DEBUG: .Values.namespace is {{ .Values.namespace }}
+{{- end }}
 {{- default .Values.namespace .Release.Namespace -}}
 {{- end }}

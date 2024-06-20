@@ -4,6 +4,8 @@ kind: Service
 metadata:
   name: {{ .name | replace "_" "-" }}-service
   namespace: {{ include "ml-model.namespace" . }}
+  annotations:
+    DEBUG: namespace is {{ include "ml-model.namespace" . }}
 spec:
   selector:
     app: {{ .name | replace "_" "-" }}
