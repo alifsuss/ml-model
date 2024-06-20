@@ -3,7 +3,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ .name | replace "_" "-" }}-deployment
-  namespace: {{ include "mlchart.namespace" . }}
+  namespace: ml-models
 spec:
   replicas: {{ .replicaCount }}
   selector:

@@ -1,0 +1,46 @@
+namespace: ml-models
+serviceAccount:
+  create: true
+  name: ""
+
+service:
+  port: 80  # Default port for testing
+
+images:
+  - name: get-health-fastapi
+    tag: latest
+    replicaCount: 1
+    maxReplicas: 3
+    port: 8080
+    resources:
+      limits:
+        cpu: 500m
+        memory: 512Mi
+      requests:
+        cpu: 200m
+        memory: 256Mi
+  - name: another-image
+    tag: latest
+    replicaCount: 1
+    maxReplicas: 3
+    port: 8081
+    resources:
+      limits:
+        cpu: 500m
+        memory: 512Mi
+      requests:
+        cpu: 200m
+        memory: 256Mi
+
+
+ingress:
+  enabled: true
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+  paths:
+    - path: /latest/get-health-fastapi
+      serviceName: get-health-fastapi-service
+      servicePort: 8080
+    - path: /latest/another-image
+      serviceName: another-image-service
+      servicePort: 8081

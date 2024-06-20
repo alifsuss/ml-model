@@ -3,7 +3,7 @@ apiVersion: autoscaling/v1
 kind: HorizontalPodAutoscaler
 metadata:
   name: {{ .name | replace "_" "-" }}-hpa
-  namespace: {{ include "mlchart.namespace" . }}
+  namespace: ml-models
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
