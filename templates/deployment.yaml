@@ -1,3 +1,4 @@
+{{- range .Values.images }}
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -14,7 +15,6 @@ spec:
         app: {{ .name | replace "_" "-" }}
     spec:
       containers:
-        {{- range .Values.images }}
         - name: {{ .name | replace "_" "-" }}
           image: "asia-southeast2-docker.pkg.dev/mycicdproject-426810/images/{{ .name }}:{{ .tag }}"
           ports:
@@ -26,4 +26,4 @@ spec:
             requests:
               cpu: {{ .resources.requests.cpu }}
               memory: {{ .resources.requests.memory }}
-        {{- end }}
+{{- end }}
