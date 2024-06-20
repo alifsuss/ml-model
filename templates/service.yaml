@@ -3,9 +3,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: {{ .name | replace "_" "-" }}-service
-  namespace: {{ include "ml-model.namespace" . }}
-  annotations:
-    DEBUG: namespace is {{ include "ml-model.namespace" . }}
+  namespace: {{ include "mlchart.namespace" . }}
 spec:
   selector:
     app: {{ .name | replace "_" "-" }}
